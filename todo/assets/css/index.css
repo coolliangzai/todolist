@@ -1,0 +1,123 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #cdcdcd;
+}
+
+.head {
+	width: 100%;
+	background-color: #323232;
+}
+
+.content {
+	width: 640px;
+	height: 50px;
+	margin: 0 auto;
+
+}
+
+.head-left {
+	width: 150px;
+	height: 100%;
+	line-height: 50px;
+	float: left;
+}
+
+.head-left h2 {
+	color: white;
+}
+
+
+.add {
+	float: right;
+	height: 30px;
+	margin-top: 10px;
+	width: 365px;
+	background-color: white;
+	border: 1px solid #323232;
+
+}
+
+.head-right input {
+	text-indent: 1em;
+	display: block;
+	width: 365px;
+	height: 30px;
+	border: none;
+	outline: none;
+}
+
+.main {
+	margin-top: 20px;
+}
+
+.main .main-left {
+	float: left;
+	color: red;
+	display: block;
+	width: 140px;
+
+}
+
+.circle {
+	float: right;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	background-color: #e6e6fa;
+
+}
+
+.todo {
+	height: 30px;
+	border: 1px solid gray;
+	background-color: white;
+	border-radius: 5px;
+
+}
+
+.todo .check {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.todo .check,
+.what-todo {
+	display: block;
+	line-height: 30px;
+	float: left;
+}
+
+.what-todo {
+	margin-left: 5px;
+}
+
+.what-todo input {
+	border: none;
+	outline: none;
+}
+
+.delete {
+	float: right;
+	line-height: 30px;
+	padding-right: 10px;
+}
+
+.bottom {
+	margin-top: 20px;
+}
+
+.bottom .main-left {
+	float: left;
+
+	display: block;
+	width: 140px;
+}
+
+.footer {
+	text-align: center;
+}
