@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./todo/assets/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <Headerd @addthing='addthing'></Headerd>
+        <Doing :todos='todos'></Doing>
+        <Has-Done></Has-Done>
+        <Foot-Copy></Foot-Copy>
+    </div>
+    <script>
+        //头部组件
+        var Headerd = {
+            data() {
+                return {}
+            },
+            methods: {
+                addthing(e) {
+                    this.$emit('addthing', e)
+                },
+            },
+            template: `<div class="head">
+			<div id="title">
+				<div class="content">
+					<div class="head-left">
+						<h2>Todolist</h2>
+					</div>
+					<div class="head-right">
+						<div class="add"> <input type="text" placeholder="todo" @keyup.enter='addthing'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>`
+        }
+        //正在做组件
+        var Doing = {
+            props: ['todos'],
+            template: `<div><div class="main content">
+			<div class="main-left">
+				<h2>正在进行</h2>
+			</div>
+			<div class="circle">
+				<h3>1</h3>
+			</div>
+		</div>
+		<div class="todo content" v-for="(item,index) in todos" :key=index>
+			<input type="checkbox" name="" id="" class="check">
+
+			<div class="what-todo"><input type="text" name="" id="" :value=item></div>
+			<div class="delete">x</div>
+        </div>
+    </div>`,
+            data() {
+                return {}
+            },
+            methods: {},
+        }
+        //已经完成组件
+        var HasDone = {
+            template: `<div class="bottom content">
+			<div class="main-left">
+				<h2>已经完成</h2>
+			</div>
+			<div class="circle">
+				<h3>1</h3>
+			</div>
+		</div>`
+        }
+        //底部组件
+        var FootCopy = {
+            template: `<div class="footer content">copyright@1053516431@qq.com</div>`
+        }
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                Headerd,
+                Doing,
+                HasDone,
+                FootCopy
+            },
+            data: {
+                todos: []
+            },
+            methods: {
+                addthing: function (e) {
+                    this.todos.unshift(e.target.value)
+                    console.log(this.todos);
+                    // e.target.value
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
