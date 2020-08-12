@@ -12,11 +12,12 @@
 <body>
     <div id="app">
         <Headerd @addthing='addthing'></Headerd>
-        <Doing :todos='todos'></Doing>
+        <Doing :todos='todos' @deletething='deletething'></Doing>
         <Has-Done></Has-Done>
         <Foot-Copy></Foot-Copy>
     </div>
     <script>
+        let id = 1;
         //头部组件
         var Headerd = {
             data() {
@@ -43,26 +44,39 @@
         }
         //正在做组件
         var Doing = {
-            props: ['todos'],
+            props: {
+                todos: {
+                    type: Array,
+                    required: true
+                }
+            },
             template: `<div><div class="main content">
 			<div class="main-left">
 				<h2>正在进行</h2>
 			</div>
 			<div class="circle">
-				<h3>1</h3>
+				<h3>{{todos.length}}</h3>
 			</div>
 		</div>
-		<div class="todo content" v-for="(item,index) in todos" :key=index>
+		<div class="todo content"  v-for="item in todos" :key=item.id>
 			<input type="checkbox" name="" id="" class="check">
 
-			<div class="what-todo"><input type="text" name="" id="" :value=item></div>
-			<div class="delete">x</div>
+			<div class="what-todo"><input type="text" name="" id="" :value=item.content></div>
+			<div class="delete" @click='deletething' :id=item.id>x</div>
         </div>
     </div>`,
             data() {
-                return {}
+                return {
+
+                }
             },
-            methods: {},
+            methods: {
+
+                deletething(e) {
+                    console.log(e.target.id);
+                    this.$emit('deletething', e.target.id)
+                }
+            },
         }
         //已经完成组件
         var HasDone = {
@@ -92,9 +106,21 @@
             },
             methods: {
                 addthing: function (e) {
-                    this.todos.unshift(e.target.value)
-                    console.log(this.todos);
+                    if (e.target.value.trim().length > 0) {
+                        this.todos.unshift({
+                            content: e.target.value.trim(),
+                            id: id++
+                        })
+                    }
+                    e.target.value = ''
+
                     // e.target.value
+                },
+                deletething(id) {
+                    console.log(this.todos.findIndex((value) => value.id == id));
+                    this.todos.splice(this.todos.findIndex((value) => value.id == id), 1)
+
+
                 }
             },
         })
